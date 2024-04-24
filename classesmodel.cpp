@@ -1,6 +1,5 @@
 #include "classesmodel.h"
 #include "constants.h"
-//#include "tableexception.h"
 
 #include <filesystem>
 #include <fstream>

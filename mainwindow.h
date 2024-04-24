@@ -23,5 +23,8 @@ private:
     Ui::MainWindow *ui;
 
     std::unique_ptr<ClassesModel> m_model;
+
+private slots:
+    void on_actionLoad_data_triggered();
 };
 #endif // MAINWINDOW_H

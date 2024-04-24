@@ -3,6 +3,8 @@
 
 #include "classesmodel.h"
 
+#include <QFileDialog>
+
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -10,15 +12,24 @@ MainWindow::MainWindow(QWidget* parent)
     ui->setupUi(this);
 
     m_model = std::make_unique<ClassesModel>();
-    m_model->loadEthalonData("C:/Users/Sergey/Documents/cpp/AnalyticsTable/build/Debug/ethalon_data");
-    m_model->loadRealData("C:/Users/Sergey/Documents/cpp/AnalyticsTable/build/Debug/real_data");
-
-    ui->mainTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    ui->mainTableView->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    ui->mainTableView->setModel(m_model.get());
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_actionLoad_data_triggered()
+{
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Open Directory"),
+        ".",
+        QFileDialog::ShowDirsOnly
+        | QFileDialog::DontResolveSymlinks);
+
+    m_model->loadEthalonData((dir + "/ethalon_data/").toStdString());
+    m_model->loadRealData((dir + "/real_data/").toStdString());
+
+    ui->mainTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->mainTableView->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->mainTableView->setModel(m_model.get());
 }
