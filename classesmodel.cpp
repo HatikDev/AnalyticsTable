@@ -1,5 +1,6 @@
 #include "classesmodel.h"
 #include "constants.h"
+#include "tableexception.h"
 
 #include <filesystem>
 #include <fstream>
@@ -112,7 +113,7 @@ void ClassesModel::loadPredefinedClasses(const std::string& datasetPath)
 {
     std::ifstream file(datasetPath + "/predefined_classes.txt");
     if (!file)
-        throw std::exception("Can't find predefined classes file"); // TableException("Can't find predefined classes file");
+        throw TableException("Can't find predefined classes file");
 
     m_classes.clear();
 

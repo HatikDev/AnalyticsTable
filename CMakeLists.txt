@@ -26,8 +26,8 @@ set(PROJECT_SOURCES
     classlabel.h
     result.cpp
     result.h
-#    testexception.cpp
-#    testexception.h
+    tableexception.cpp
+    tableexception.h
 
     main.cpp
 )
