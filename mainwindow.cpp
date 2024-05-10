@@ -26,6 +26,9 @@ void MainWindow::on_actionLoad_data_triggered()
         QFileDialog::ShowDirsOnly
         | QFileDialog::DontResolveSymlinks);
 
+    if (dir.isEmpty())
+        return;
+
     m_model->loadEthalonData((dir + "/ethalon_data/").toStdString());
     m_model->loadRealData((dir + "/real_data/").toStdString());
 
